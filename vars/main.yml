@@ -1,0 +1,4 @@
+---
+virtualbox_packages_centos:
+  - dkms
+  - VirtualBox-{{ virtualbox_version }}

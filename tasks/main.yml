@@ -1,0 +1,20 @@
+---
+
+- name: Add Oracle VirtualBox YUM repository
+  yum_repository:
+    name: virtualbox
+    description: Oracle VirtualBox YUM repository
+    baseurl: http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch
+    gpgcakey: https://www.virtualbox.org/download/oracle_vbox.asc
+    gpgcheck: yes
+    repo_gpgcheck: yes
+    enabled: yes
+  tags: virtualbox-install
+
+- name: Install VirtualBox and required packages
+  yum:
+    name: "{{ item }}"
+    state: present
+    enablerepo: "epel,virtualbox"
+  with_items: "{{ virtualbox_packages_centos }}"
+  tags: virtualbox-install
